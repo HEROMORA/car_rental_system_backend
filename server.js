@@ -7,7 +7,7 @@ const AppError = require('./utils/appError');
 class Server {
   constructor() {
     this.app = express();
-    
+
     this.configMiddleware();
     this.mountRoutes();
   }
@@ -18,7 +18,7 @@ class Server {
   }
 
   mountRoutes() {
-    this.app.use('/car', carRouter);
+    this.app.use('/cars', carRouter);
 
     // If the route is not found
     this.app.use('*', (req, res, next) => {

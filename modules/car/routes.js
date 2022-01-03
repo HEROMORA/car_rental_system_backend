@@ -1,9 +1,10 @@
 const { Router } = require('express');
 
-const carRouter = Router();
+const CarController = require('./carController');
 
-carRouter.get('/', (req, res, next) => {
-  res.status(200).json({ text: 'hello, world!' });
-});
+const carRouter = Router();
+const carController = new CarController();
+
+carRouter.get('/', carController.getCars);
 
 module.exports = carRouter;
