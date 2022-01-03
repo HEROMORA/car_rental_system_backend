@@ -18,7 +18,9 @@ class Server {
   }
 
   mountRoutes() {
-    this.app.use('/cars', carRouter);
+
+    const v1Router = this.getAPIV1Router();
+    this.app.use('/api/v1', v1Router);
 
     // If the route is not found
     this.app.use('*', (req, res, next) => {
@@ -27,6 +29,14 @@ class Server {
 
     // Handle Application errors
     this.app.use(error);
+  }
+
+  getAPIV1Router() {
+
+    const router = express.Router();
+    router.use('/cars', carRouter);
+    
+    return router;
   }
 }
 
