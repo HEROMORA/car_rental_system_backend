@@ -1,4 +1,5 @@
 const express = require('express');
+const sequelize = require('./instances/sequelize');
 
 const error = require('./middleware/error');
 const carRouter = require('./modules/car/routes');
@@ -10,15 +11,17 @@ class Server {
 
     this.configMiddleware();
     this.mountRoutes();
+    this.initializeDatabase();
   }
 
+  // apply application middlewares
   configMiddleware() {
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
   }
 
+  // Mount the routers to the app instance
   mountRoutes() {
-
     const v1Router = this.getAPIV1Router();
     this.app.use('/api/v1', v1Router);
 
@@ -31,12 +34,23 @@ class Server {
     this.app.use(error);
   }
 
+  // Returns the router of v1
   getAPIV1Router() {
-
     const router = express.Router();
     router.use('/cars', carRouter);
-    
+
     return router;
+  }
+
+  async initializeDatabase() {
+    try {
+      await sequelize.authenticate();
+      console.log(
+        'Connection has been established successfully.'.blue.underline
+      );
+    } catch (error) {
+      console.error('Unable to connect to the database:', error);
+    }
   }
 }
 
