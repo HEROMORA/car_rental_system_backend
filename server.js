@@ -1,10 +1,13 @@
 const express = require('express');
+
+const error = require('./middleware/error');
 const carRouter = require('./modules/car/routes');
 const AppError = require('./utils/appError');
 
 class Server {
   constructor() {
     this.app = express();
+    
     this.configMiddleware();
     this.mountRoutes();
   }
@@ -18,8 +21,8 @@ class Server {
     this.app.use('/car', carRouter);
 
     // If the route is not found
-    this.app.use('*', (req, res) => {
-      res.status(404).json(AppError('API_NOT_FOUND', 404));
+    this.app.use('*', (req, res, next) => {
+      next(new AppError('Route not found.', 404));
     });
 
     // Handle Application errors

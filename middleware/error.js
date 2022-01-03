@@ -4,7 +4,7 @@
 //   ForeignKeyConstraintError,
 //   ValidationError,
 // } from 'sequelize';
-import AppError from '../utils/appError';
+const AppError = require('../utils/appError');
 
 const error = (err, req, res, next) => {
   let statusCode = 500;
@@ -16,32 +16,32 @@ const error = (err, req, res, next) => {
     error = new AppError(err.message, 400);
   }
 
-//   // If the error is validation error from DB
-//   else if (error instanceof ValidationError) {
-//     const errors = error.errors.map((e) => {
-//       return {
-//         path: e.path,
-//         message: e.message,
-//       };
-//     });
-//     error = new AppError('Validation Error', 422, errors);
-//   }
+  //   // If the error is validation error from DB
+  //   else if (error instanceof ValidationError) {
+  //     const errors = error.errors.map((e) => {
+  //       return {
+  //         path: e.path,
+  //         message: e.message,
+  //       };
+  //     });
+  //     error = new AppError('Validation Error', 422, errors);
+  //   }
 
-//   // If the error is validation error from DB
-//   else if (error instanceof DatabaseError) {
-//     error = new AppError(
-//       error['fields']
-//         ? `Invalid value for the field ${error['fields'][0]}`
-//         : `Invalid value ${error.message}`,
-//       422
-//     );
-//   } else if (error instanceof ForeignKeyConstraintError) {
-//     error = new AppError(`Invalid value for field "${error.fields[0]}"`, 422);
-//   } else if (error instanceof MulterError) {
-//     if (error.code === 'LIMIT_UNEXPECTED_FILE') {
-//       error = new AppError(`Invalid number of uploads`, 400);
-//     }
-//   }
+  //   // If the error is validation error from DB
+  //   else if (error instanceof DatabaseError) {
+  //     error = new AppError(
+  //       error['fields']
+  //         ? `Invalid value for the field ${error['fields'][0]}`
+  //         : `Invalid value ${error.message}`,
+  //       422
+  //     );
+  //   } else if (error instanceof ForeignKeyConstraintError) {
+  //     error = new AppError(`Invalid value for field "${error.fields[0]}"`, 422);
+  //   } else if (error instanceof MulterError) {
+  //     if (error.code === 'LIMIT_UNEXPECTED_FILE') {
+  //       error = new AppError(`Invalid number of uploads`, 400);
+  //     }
+  //   }
 
   // Setting the correct status code
   if (error instanceof AppError) {
@@ -69,4 +69,4 @@ const error = (err, req, res, next) => {
   res.status(statusCode).json(errorResponse);
 };
 
-export default error;
+module.exports = error;
