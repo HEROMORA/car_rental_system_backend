@@ -1,4 +1,5 @@
-const { getCars } = require('./services');
+const AppError = require('../../utils/appError');
+const { getCars, createCar } = require('./services');
 
 class CarController {
   getCars(req, res, next) {
@@ -8,7 +9,10 @@ class CarController {
 
   getAllAvailableCars() {}
 
-  createCar() {}
+  async createCar(req, res, next) {
+    const car = await createCar(req.body);
+    res.status(201).json(car);
+  }
 }
 
 module.exports = CarController;
