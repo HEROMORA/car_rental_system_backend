@@ -1,4 +1,5 @@
 require('dotenv').config({ path: './config/config.env' });
+require('express-async-errors');
 const colors = require('colors');
 
 const server = require('./server');
