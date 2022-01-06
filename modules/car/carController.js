@@ -2,8 +2,8 @@ const AppError = require('../../utils/appError');
 const { getCars, createCar } = require('./services');
 
 class CarController {
-  getCars(req, res, next) {
-    const cars = getCars();
+  async getCars(req, res, next) {
+    const cars = await getCars({ query: req.query });
     res.status(200).json(cars);
   }
 

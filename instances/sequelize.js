@@ -7,7 +7,7 @@ const dbPassword = process.env.DB_PASS || '';
 const dbPort = parseInt(process.env.DB_PORT, 10) || 3306;
 
 const sequelize = new Sequelize(db, dbUsername, dbPassword, {
-  logging: false,
+  // logging: false,
   dialect: 'mysql',
   port: dbPort,
 });
