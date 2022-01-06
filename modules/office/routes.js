@@ -9,4 +9,7 @@ officeRouter
   .get(officeController.getAllOffices)
   .post(officeController.createOffice);
 
+officeRouter.route('/:id').get(officeController.getOfficeById);
+
+
 module.exports = officeRouter;
