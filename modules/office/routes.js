@@ -11,5 +11,4 @@ officeRouter
 
 officeRouter.route('/:id').get(officeController.getOfficeById);
 
-
 module.exports = officeRouter;

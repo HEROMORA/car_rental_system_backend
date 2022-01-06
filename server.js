@@ -4,6 +4,7 @@ const sequelize = require('./instances/sequelize');
 const error = require('./middleware/error');
 const carRouter = require('./modules/car/routes');
 const officeRouter = require('./modules/office/routes');
+const carDescriptionRouter = require('./modules/car_description/routes');
 const AppError = require('./utils/appError');
 
 class Server {
@@ -40,6 +41,7 @@ class Server {
     const router = express.Router();
     router.use('/cars', carRouter);
     router.use('/offices', officeRouter);
+    router.use('/car-descriptions', carDescriptionRouter);
 
     return router;
   }
