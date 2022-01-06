@@ -5,6 +5,7 @@ const error = require('./middleware/error');
 const carRouter = require('./modules/car/routes');
 const officeRouter = require('./modules/office/routes');
 const carDescriptionRouter = require('./modules/car_description/routes');
+const carPriceRouter = require('./modules/car_price/routes');
 const AppError = require('./utils/appError');
 
 class Server {
@@ -42,6 +43,7 @@ class Server {
     router.use('/cars', carRouter);
     router.use('/offices', officeRouter);
     router.use('/car-descriptions', carDescriptionRouter);
+    router.use('/car-prices', carPriceRouter);
 
     return router;
   }
