@@ -12,24 +12,31 @@ const CarDescription = sequelize.define(
     },
     model: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
     year: {
       type: DataTypes.INTEGER,
+      allowNull: false,
     },
     color: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
     brand: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
     transmission: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
     type: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
     image: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
   },
   {

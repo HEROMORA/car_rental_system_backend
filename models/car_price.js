@@ -12,6 +12,7 @@ const CarPrice = sequelize.define(
     },
     price_per_day: {
       type: DataTypes.DECIMAL,
+      allowNull: false,
     },
   },
   {

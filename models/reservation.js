@@ -14,15 +14,19 @@ const Reservation = sequelize.define(
     },
     car_id: {
       type: DataTypes.INTEGER,
+      allowNull: false,
     },
     customer_id: {
       type: DataTypes.INTEGER,
+      allowNull: false,
     },
     res_date: {
       type: DataTypes.DATE,
+      allowNull: false,
     },
     return_date: {
       type: DataTypes.DATE,
+      allowNull: false,
     },
   },
   {
