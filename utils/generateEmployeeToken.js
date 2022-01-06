@@ -4,7 +4,7 @@ module.exports = (payload) => {
       ...payload,
       role: 'admin',
     },
-    process.env.JWT_TOKEN_ADMIN_SECRET
+    process.env.JWT_TOKEN_SECRET
   );
   return token;
 };
