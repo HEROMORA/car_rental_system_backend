@@ -3,17 +3,23 @@ const sequelize = require('../instances/sequelize');
 const Car = require('./car');
 const Office = require('./office');
 
-const OfficeCar = sequelize.define('office_car', {
-  // Model attributes are defined here
-  office_id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
+const OfficeCar = sequelize.define(
+  'OfficeCar',
+  {
+    office_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+    },
+    car_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+    },
   },
-  car_id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-  },
-});
+  {
+    tableName: 'office_car',
+    timestamps: false,
+  }
+);
 
 OfficeCar.belongsTo(Car, {
   foreignKey: 'car_id',

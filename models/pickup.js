@@ -18,6 +18,10 @@ const Pickup = sequelize.define('Pickup', {
   pickup_address: {
     type: DataTypes.STRING,
   },
+},
+{
+  tableName: 'pickup',
+  timestamps: false,
 });
 
 Pickup.belongsTo(Reservation, {
