@@ -45,7 +45,7 @@ const signup = async (body) => {
 
   const token = generateCustomerToken({
     customer_id: customer.customer_id,
-    account_id: account.account_id,
+    account_id: customer.account_id,
   });
 
   return {

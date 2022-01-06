@@ -1,5 +1,4 @@
-const res = require('express/lib/response');
-const { signup } = require('./services');
+const { signup, login } = require('./services');
 
 class AuthController {
   async register(req, res, next) {
@@ -7,7 +6,10 @@ class AuthController {
     res.status(201).json(data);
   }
 
-  async login(req, rest, next) {}
+  async login(req, res, next) {
+    const data = await login(req.body);
+    res.status(200).json(data);
+  }
 }
 
 module.exports = AuthController;
