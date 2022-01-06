@@ -3,8 +3,9 @@ const getCars = () => {
 
   return {
     car1: {
-      id: 1,
-      color: 'red',
+      car_id: 1,
+      plate_id: 14253,
+      car_description_id: 1,
     },
   };
 };

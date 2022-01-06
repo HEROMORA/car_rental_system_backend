@@ -1,43 +1,34 @@
 const { Sequelize, DataTypes, Model } = require('sequelize');
 const sequelize = require('../instances/sequelize');
-
-// class Car extends Model {}
-
-// Car.init(
-//   {
-//     // Model attributes are defined here
-//     color: {
-//       type: DataTypes.STRING,
-//       allowNull: false,
-//     },
-//     brand: {
-//       type: DataTypes.STRING,
-//       // allowNull defaults to true
-//     },
-//   },
-//   {
-//     // Other model options go here
-//     sequlize, // We need to pass the connection instance
-//     modelName: 'Car', // We need to choose the model name
-//   }
-// );
+const CarDescription = require('./car_description');
 
 const Car = sequelize.define(
   'Car',
   {
     // Model attributes are defined here
-    color: {
+    car_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    plate_id: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
     },
-    brand: {
-      type: DataTypes.STRING,
-      // allowNull defaults to true
+    car_description_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
   },
   {
     // Other model options go here
   }
 );
+
+Car.belongsTo(CarDescription, {
+  foreignKey: 'car_description_id',
+  targetKey: 'car_description_id',
+});
 
 module.exports = Car;
