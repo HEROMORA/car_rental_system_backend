@@ -12,6 +12,7 @@ const Employee = sequelize.define(
     },
     account_id: {
       type: DataTypes.INTEGER,
+      allowNull: false,
     },
   },
   {

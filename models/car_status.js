@@ -2,20 +2,24 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../instances/sequelize');
 const Car = require('./car');
 
-const CarStatus = sequelize.define('CarStatus', {
-  // Model attributes are defined here
-  car_id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
+const CarStatus = sequelize.define(
+  'CarStatus',
+  {
+    // Model attributes are defined here
+    car_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+    },
+    status: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
-  status: {
-    type: DataTypes.STRING,
-  },
-},
-{
-  timestamps: false,
-  tableName: 'car_status',
-});
+  {
+    timestamps: false,
+    tableName: 'car_status',
+  }
+);
 
 CarStatus.belongsTo(Car, {
   foreignKey: 'car_id',

@@ -12,12 +12,15 @@ const Payment = sequelize.define(
     },
     res_id: {
       type: DataTypes.INTEGER,
+      allowNull: false,
     },
     amount: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DECIMAL,
+      allowNull: false,
     },
     payment_date: {
       type: DataTypes.DATE,
+      allowNull: false,
     },
   },
   {
