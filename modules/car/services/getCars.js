@@ -1,13 +1,17 @@
-const getCars = () => {
-  // TODO: GET CARS FROM THE DATABASE
+const Car = require('../../../models/car');
+const AdvancedResults = require('../../../utils/advancedResults');
 
-  return {
-    car1: {
-      car_id: 1,
-      plate_id: 14253,
-      car_description_id: 1,
-    },
-  };
+const getCars = async (request) => {
+  const advancedResults = new AdvancedResults(
+    Car,
+    request.query,
+    {},
+    {}
+  ).filter(['color', 'brand']);
+
+  const results = await advancedResults.execute();
+
+  return results;
 };
 
 module.exports = getCars;
