@@ -3,6 +3,7 @@ const sequelize = require('./instances/sequelize');
 
 const error = require('./middleware/error');
 const carRouter = require('./modules/car/routes');
+const officeRouter = require('./modules/office/routes');
 const AppError = require('./utils/appError');
 
 class Server {
@@ -38,6 +39,7 @@ class Server {
   getAPIV1Router() {
     const router = express.Router();
     router.use('/cars', carRouter);
+    router.use('/offices', officeRouter);
 
     return router;
   }
