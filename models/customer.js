@@ -2,8 +2,7 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../instances/sequelize');
 const Account = require('./account');
 
-const Customer = sequelize.define('customer', {
-  // Model attributes are defined here
+const Customer = sequelize.define('Customer', {
   customer_id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -22,6 +21,10 @@ const Customer = sequelize.define('customer', {
     type: DataTypes.STRING,
     unique: true,
   },
+},
+{
+  tableName: 'customer',
+  timestamps: false,
 });
 
 Customer.belongsTo(Account, {

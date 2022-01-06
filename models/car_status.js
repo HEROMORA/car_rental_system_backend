@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../instances/sequelize');
 const Car = require('./car');
 
-const CarStatus = sequelize.define('car_status', {
+const CarStatus = sequelize.define('CarStatus', {
   // Model attributes are defined here
   car_id: {
     type: DataTypes.INTEGER,
@@ -11,6 +11,10 @@ const CarStatus = sequelize.define('car_status', {
   status: {
     type: DataTypes.STRING,
   },
+},
+{
+  timestamps: false,
+  tableName: 'car_status',
 });
 
 CarStatus.belongsTo(Car, {
