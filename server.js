@@ -7,6 +7,7 @@ const officeRouter = require('./modules/office/routes');
 const carDescriptionRouter = require('./modules/car_description/routes');
 const carPriceRouter = require('./modules/car_price/routes');
 const carStatusRouter = require('./modules/car_status/routes');
+const officeCarRouter = require('./modules/office_car/routes');
 const AppError = require('./utils/appError');
 
 class Server {
@@ -46,6 +47,7 @@ class Server {
     router.use('/car-descriptions', carDescriptionRouter);
     router.use('/car-prices', carPriceRouter);
     router.use('/car-statuses', carStatusRouter);
+    router.use('/office-cars', officeCarRouter);
 
     return router;
   }
