@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const reservationController = require('./reservationController');
+const ReservationController = require('./reservationController');
 
 const auth = require('../../middleware/auth');
 const role = require('../../middleware/role');
@@ -9,8 +9,8 @@ const reservationController = new ReservationController();
 
 reservationRouter
   .route('/')
-  .post(reservationController.createReservation);
+  .post(auth,role(["customer"]),reservationController.createReservation);
 
-  reservationRouter.route('/:id').get(reservationController.getReservationTimes);
+  reservationRouter.route('/car/:carid').get(reservationController.getReservationTimes);
 
 module.exports = reservationRouter;

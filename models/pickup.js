@@ -34,4 +34,9 @@ Pickup.belongsTo(Reservation, {
   targetKey: 'res_id',
 });
 
+Reservation.hasOne(Pickup, {
+  foreignKey: 'res_id',
+  targetKey: 'res_id'
+});
+
 module.exports = Pickup;
