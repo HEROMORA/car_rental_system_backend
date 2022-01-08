@@ -9,8 +9,10 @@ const reservationController = new ReservationController();
 
 reservationRouter
   .route('/')
-  .post(auth,role(["customer"]),reservationController.createReservation);
+  .post(auth, role(['customer']), reservationController.createReservation);
 
-  reservationRouter.route('/car/:carid').get(reservationController.getReservationTimes);
+reservationRouter
+  .route('/car/:carid')
+  .get(reservationController.getReservationTimes);
 
 module.exports = reservationRouter;
