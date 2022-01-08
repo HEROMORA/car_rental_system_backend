@@ -6,14 +6,24 @@ const CarDescription = require('../../../models/car_description');
 const Office = require('../../../models/office');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
+const { pick } = require('lodash');
 
 const getOfficeCarsWithDetails = async (customerId, query) => {
   let address;
   if (!query.office_id) {
     const customer = await Customer.findByPk(customerId);
-    let details = customer.address.split(/,| /);
+    let details = customer.address.split(/(?:,| )+/);
     address = details[details.length - 2] + ', ' + details[details.length - 1];
   }
+
+  const carDescriptionQuery = pick(query, [
+    'model',
+    'color',
+    'year',
+    'brand',
+    'transmission',
+    'type',
+  ]);
 
   const inclusionArray = [
     {
@@ -21,8 +31,11 @@ const getOfficeCarsWithDetails = async (customerId, query) => {
       include: [
         {
           model: CarDescription,
+          where: carDescriptionQuery,
+          required: true,
         },
       ],
+      required: true,
     },
   ];
 
@@ -41,7 +54,7 @@ const getOfficeCarsWithDetails = async (customerId, query) => {
     where: !query.office_id
       ? {}
       : {
-          ...office_data,
+          office_id: query.office_id,
         },
     include: inclusionArray,
   });
