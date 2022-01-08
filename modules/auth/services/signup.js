@@ -40,6 +40,7 @@ const signup = async (body) => {
 
     await t.commit();
   } catch (err) {
+    await t.rollback();
     throw err;
   }
 
