@@ -3,11 +3,53 @@ const Payment = require('../../../models/payment');
 const Pickup = require('../../../models/pickup');
 const sequelize = require('../../../instances/sequelize');
 const CarPrice = require('../../../models/car_price');
+const AppError = require('../../../utils/appError');
+
+const { Op } = require('sequelize');
 
 const createReservation = async (resData) => {
   var today = new Date();
   var nowDate =
     today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+
+  if (new Date(resData.return_date) < new Date(resData.pickup_date)) {
+    throw new AppError('Invalid Dates', 400);
+  }
+
+  // TODO: HANDLE INTERSECTING DATES!
+  // const reservations = await Reservation.findAll({
+  //   where: {
+  //     car_id: resData.car_id,
+  //     [Op.or]: [
+  //       {
+  //         return_date: {
+  //           [Op.between]: [resData.pickup_date, resData.return_date],
+  //         },
+  //       },
+  //       {
+  //         '$pickup.pickup_date$': {
+  //           [Op.between]: [resData.pickup_date, resData.return_date],
+  //         },
+  //       },
+  //     ],
+  //   },
+  //   include: {
+  //     model: Pickup,
+  //     required: true,
+  //   },
+  // });
+
+  // if (reservations.length > 0) {
+  //   throw new AppError('This car is already reserved at this time!', 400);
+  // }
+
+  // const pickups = await Pickup.findAll({
+  //   where: {
+  //     car_id: resData.car_id,
+  //     return_date: { [between]: [resData.pickup_date, resData.return_date] },
+  //   },
+
+  // });
 
   const t = await sequelize.transaction();
 
