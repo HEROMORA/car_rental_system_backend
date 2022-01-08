@@ -14,5 +14,5 @@ officeCarRouter.get('/details', officeCarController.getOfficeCarsWithDetails);
 officeCarRouter.post('/', officeCarController.createOfficeCar);
 officeCarRouter.get('/:id', officeCarController.getOfficeCarById);
 officeCarRouter.get('/', officeCarController.getAllOfficeCars);
-
+officeCarRouter.delete('/:id', officeCarController.deleteOfficeCarById);
 module.exports = officeCarRouter;

@@ -12,4 +12,8 @@ carDescriptionRouter
   .route('/:id')
   .get(carDescriptionController.getCarDescriptionById);
 
+  carDescriptionRouter
+  .route('/:id')
+  .put(carDescriptionController.updateCarDescription);  
+
 module.exports = carDescriptionRouter;

@@ -2,7 +2,8 @@ const {
   createOfficeCar,
   getOfficeCarById,
   getAllOfficeCars,
-  getOfficeCarsWithDetails,
+  deleteOfficeCarById,
+  getOfficeCarsWithDetails, 
 } = require('./services');
 
 class OfficeCarController {
@@ -26,6 +27,11 @@ class OfficeCarController {
   async getAllOfficeCars(req, res, next) {
     const officeCars = await getAllOfficeCars();
     res.status(200).json(officeCars);
+  }
+
+  async deleteOfficeCarById(req, res, next) {
+    const officeCar = await deleteOfficeCarById(req.params.id);
+    res.status(200).json(officeCar);
   }
 }
 
