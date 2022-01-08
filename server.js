@@ -2,6 +2,7 @@ const express = require('express');
 const sequelize = require('./instances/sequelize');
 
 const error = require('./middleware/error');
+const authRouter = require('./modules/auth/routes');
 const carRouter = require('./modules/car/routes');
 const officeRouter = require('./modules/office/routes');
 const carDescriptionRouter = require('./modules/car_description/routes');
@@ -48,6 +49,7 @@ class Server {
     router.use('/car-prices', carPriceRouter);
     router.use('/car-statuses', carStatusRouter);
     router.use('/office-cars', officeCarRouter);
+    router.use('/auth', authRouter);
 
     return router;
   }
