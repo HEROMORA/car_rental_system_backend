@@ -16,13 +16,22 @@ const createReservation = async (resData) => {
       {
         car_id: resData.car_id,
         customer_id: resData.customer_id,
-        res_date: resData.res_date,
+        res_date: nowDate,
         return_date: resData.return_date,
       },
       { transaction: t }
     );
 
-    const date1 = new Date(reservation.res_date);
+    const pickup = await Pickup.create(
+      {
+        res_id: reservation.res_id,
+        pickup_address: resData.pickup_address,
+        pickup_date: resData.pickup_date,
+      },
+      { transaction: t }
+    );
+
+    const date1 = new Date(pickup.pickup_date);
     const date2 = new Date(reservation.return_date);
 
     const Difference_In_Time = date2.getTime() - date1.getTime();
@@ -40,15 +49,6 @@ const createReservation = async (resData) => {
         amount: car_price.price_per_day * diff_in_days,
         payment_date:
           resData.payment_time == 'now' ? nowDate : resData.pickup_date,
-      },
-      { transaction: t }
-    );
-
-    const pickup = await Pickup.create(
-      {
-        res_id: reservation.res_id,
-        pickup_address: resData.pickup_address,
-        pickup_date: resData.pickup_date,
       },
       { transaction: t }
     );
