@@ -5,6 +5,10 @@ const error = require('./middleware/error');
 const authRouter = require('./modules/auth/routes');
 const carRouter = require('./modules/car/routes');
 const officeRouter = require('./modules/office/routes');
+const carDescriptionRouter = require('./modules/car_description/routes');
+const carPriceRouter = require('./modules/car_price/routes');
+const carStatusRouter = require('./modules/car_status/routes');
+const officeCarRouter = require('./modules/office_car/routes');
 const AppError = require('./utils/appError');
 
 class Server {
@@ -41,6 +45,10 @@ class Server {
     const router = express.Router();
     router.use('/cars', carRouter);
     router.use('/offices', officeRouter);
+    router.use('/car-descriptions', carDescriptionRouter);
+    router.use('/car-prices', carPriceRouter);
+    router.use('/car-statuses', carStatusRouter);
+    router.use('/office-cars', officeCarRouter);
     router.use('/auth', authRouter);
 
     return router;

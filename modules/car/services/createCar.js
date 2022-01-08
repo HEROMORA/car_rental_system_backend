@@ -1,11 +1,14 @@
 const Car = require('../../../models/car');
+const AppError = require('../../../utils/appError');
 
 const createCar = async (carData) => {
   const car = await Car.create({
-    car_id: carData.car_id,
-    plate_id: carData.plate_id,
-    car_description_id: carData.car_description_id,
+    ...carData,
   });
+
+  if (!car) {
+    throw new AppError('Car could not be created', 500);
+  }
 
   return car;
 };
