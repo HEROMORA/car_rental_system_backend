@@ -2,7 +2,6 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../instances/sequelize');
 const Car = require('./car');
 const Customer = require('./customer');
-const OfficeCar = require('./office_car');
 
 const Reservation = sequelize.define(
   'Reservation',
@@ -44,6 +43,11 @@ Reservation.belongsTo(Car, {
 Reservation.belongsTo(Customer, {
   foreignKey: 'customer_id',
   targetKey: 'customer_id',
+});
+
+Car.hasOne(Reservation, {
+  foreignKey: 'car_id',
+  targetKey: 'car_id',
 });
 
 module.exports = Reservation;

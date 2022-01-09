@@ -20,4 +20,9 @@ reportsRouter.get(
   reportController.getCarReservationsWithinPeriodReport
 );
 
+reportsRouter.get(
+  '/carStatus/:date',
+  reportController.getStatusOfAllCarsInDayReport
+);
+
 module.exports = reportsRouter;
