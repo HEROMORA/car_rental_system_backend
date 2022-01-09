@@ -7,12 +7,45 @@ const OfficeCarController = require('./officeCarController');
 const officeCarRouter = Router();
 const officeCarController = new OfficeCarController();
 
-officeCarRouter.use(auth);
-officeCarRouter.use(role(['customer']));
+officeCarRouter.get(
+  '/details',
+  auth,
+  role(['customer']),
+  officeCarController.getOfficeCarsWithDetails
+);
 
-officeCarRouter.get('/details', officeCarController.getOfficeCarsWithDetails);
-officeCarRouter.post('/', officeCarController.createOfficeCar);
-officeCarRouter.get('/:id', officeCarController.getOfficeCarById);
-officeCarRouter.get('/', officeCarController.getAllOfficeCars);
-officeCarRouter.delete('/:id', officeCarController.deleteOfficeCarById);
+officeCarRouter.post(
+  '/',
+  auth,
+  role(['customer']),
+  officeCarController.createOfficeCar
+);
+
+officeCarRouter.get(
+  '/:id',
+  auth,
+  role(['customer']),
+  officeCarController.getOfficeCarById
+);
+
+officeCarRouter.get(
+  '/',
+  auth,
+  role(['customer']),
+  officeCarController.getAllOfficeCars
+);
+
+officeCarRouter.delete(
+  '/:id',
+  auth,
+  role(['admin']),
+  officeCarController.deleteOfficeCarById
+);
+
+officeCarRouter.post(
+  '/carDesc',
+  auth,
+  role(['admin']),
+  officeCarController.createOfficeCarFromDescription
+);
 module.exports = officeCarRouter;
