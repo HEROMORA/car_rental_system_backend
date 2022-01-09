@@ -3,7 +3,8 @@ const {
   getOfficeCarById,
   getAllOfficeCars,
   deleteOfficeCarById,
-  getOfficeCarsWithDetails, 
+  getOfficeCarsWithDetails,
+  createOfficeCarFromDescription,
 } = require('./services');
 
 class OfficeCarController {
@@ -31,6 +32,11 @@ class OfficeCarController {
 
   async deleteOfficeCarById(req, res, next) {
     const officeCar = await deleteOfficeCarById(req.params.id);
+    res.status(200).json(officeCar);
+  }
+
+  async createOfficeCarFromDescription(req, res, next) {
+    const officeCar = await createOfficeCarFromDescription(req.body);
     res.status(200).json(officeCar);
   }
 }

@@ -3,6 +3,7 @@ const getOfficeCarById = require('./getOfficeCarById');
 const getAllOfficeCars = require('./getAllOfficeCars');
 const deleteOfficeCarById = require('./deleteOfficeCarById');
 const getOfficeCarsWithDetails = require('./getOfficeCarsWithDetails');
+const createOfficeCarFromDescription = require('./createOfficeCarFromDescription');
 
 module.exports = {
   createOfficeCar,
@@ -10,4 +11,5 @@ module.exports = {
   getAllOfficeCars,
   deleteOfficeCarById,
   getOfficeCarsWithDetails,
+  createOfficeCarFromDescription,
 };
