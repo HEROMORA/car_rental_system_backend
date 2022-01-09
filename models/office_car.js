@@ -2,6 +2,7 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../instances/sequelize');
 const Car = require('./car');
 const Office = require('./office');
+const Reservation = require('./reservation');
 
 const OfficeCar = sequelize.define(
   'OfficeCar',
@@ -14,7 +15,7 @@ const OfficeCar = sequelize.define(
       type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false,
-      unique: true
+      unique: true,
     },
   },
   {

@@ -10,6 +10,7 @@ const sequelize = new Sequelize(db, dbUsername, dbPassword, {
   // logging: false,
   dialect: 'mysql',
   port: dbPort,
+  timezone: '+02:00',
 });
 
 module.exports = sequelize;

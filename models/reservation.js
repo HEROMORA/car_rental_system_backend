@@ -45,4 +45,9 @@ Reservation.belongsTo(Customer, {
   targetKey: 'customer_id',
 });
 
+Car.hasOne(Reservation, {
+  foreignKey: 'car_id',
+  targetKey: 'car_id',
+});
+
 module.exports = Reservation;
