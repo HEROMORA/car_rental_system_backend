@@ -2,6 +2,7 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../instances/sequelize');
 const Car = require('./car');
 const Customer = require('./customer');
+const OfficeCar = require('./office_car');
 
 const Reservation = sequelize.define(
   'Reservation',

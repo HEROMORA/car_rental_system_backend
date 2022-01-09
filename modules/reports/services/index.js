@@ -1,3 +1,7 @@
-const getReservationsWithinPeriod = require('./getReservationsWithinPeriodReport');
+const getCarReservationsWithinPeriod = require('./getCarReservationsWithinPeriod');
+const getReservationsWithinPeriod = require('./getReservationsWithinPeriod');
 
-module.exports = { getReservationsWithinPeriodReport };
+module.exports = {
+  getReservationsWithinPeriod,
+  getCarReservationsWithinPeriod,
+};
