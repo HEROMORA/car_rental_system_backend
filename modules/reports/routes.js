@@ -25,4 +25,9 @@ reportsRouter.get(
   reportController.getStatusOfAllCarsInDayReport
 );
 
+reportsRouter.get(
+  '/customer/:customerId',
+  reportController.getCustomerReservationsReport
+);
+
 module.exports = reportsRouter;
