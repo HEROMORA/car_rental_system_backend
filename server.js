@@ -14,6 +14,7 @@ const AppError = require('./utils/appError');
 const customerRouter = require('./modules/customer/routes');
 const searchReservationRouter = require('./modules/reservation_search/routes');
 const reportsRouter = require('./modules/reports/routes');
+const cors = require('cors');
 
 class Server {
   constructor() {
@@ -26,6 +27,7 @@ class Server {
 
   // apply application middlewares
   configMiddleware() {
+    this.app(cors());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
   }
