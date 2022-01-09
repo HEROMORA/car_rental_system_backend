@@ -18,40 +18,32 @@ const createReservation = async (resData) => {
     throw new AppError('Invalid Dates', 400);
   }
 
-  // TODO: HANDLE INTERSECTING DATES!
-  // const reservations = await Reservation.findAll({
-  //   where: {
-  //     car_id: resData.car_id,
-  //     [Op.or]: [
-  //       {
-  //         return_date: {
-  //           [Op.between]: [resData.pickup_date, resData.return_date],
-  //         },
-  //       },
-  //       {
-  //         '$pickup.pickup_date$': {
-  //           [Op.between]: [resData.pickup_date, resData.return_date],
-  //         },
-  //       },
-  //     ],
-  //   },
-  //   include: {
-  //     model: Pickup,
-  //     required: true,
-  //   },
-  // });
+  const reservations = await Reservation.findAll({
+    where: {
+      car_id: resData.car_id,
+      [Op.and]: [
+        {
+          '$pickup.pickup_date$': {
+            [Op.lte]: resData.return_date,
+          },
+        },
+        {
+          return_date: {
+            [Op.gte]: resData.pickup_date,
+          },
+        },
+      ],
+    },
+    include: {
+      model: Pickup,
+      required: true,
+      attributes: ['pickup_date'],
+    },
+  });
 
-  // if (reservations.length > 0) {
-  //   throw new AppError('This car is already reserved at this time!', 400);
-  // }
-
-  // const pickups = await Pickup.findAll({
-  //   where: {
-  //     car_id: resData.car_id,
-  //     return_date: { [between]: [resData.pickup_date, resData.return_date] },
-  //   },
-
-  // });
+  if (reservations.length > 0) {
+    throw new AppError('This car is already reserved at this time!', 400);
+  }
 
   const carStatus = await CarStatus.findByPk(resData.car_id);
   if (carStatus.status !== 'active') {
