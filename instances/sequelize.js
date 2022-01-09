@@ -1,5 +1,5 @@
 const colors = require('colors');
-const { Sequelize } = require('sequelize');
+const { Sequelize, Op } = require('sequelize');
 
 const db = process.env.DB_DATABASE;
 const dbUsername = process.env.DB_USER;
