@@ -6,7 +6,14 @@ const authRouter = require('./modules/auth/routes');
 const carRouter = require('./modules/car/routes');
 const officeRouter = require('./modules/office/routes');
 const reservationRouter = require('./modules/reservation/routes');
+const carDescriptionRouter = require('./modules/car_description/routes');
+const carPriceRouter = require('./modules/car_price/routes');
+const carStatusRouter = require('./modules/car_status/routes');
+const officeCarRouter = require('./modules/office_car/routes');
 const AppError = require('./utils/appError');
+const customerRouter = require('./modules/customer/routes');
+const searchReservationRouter = require('./modules/reservation_search/routes');
+
 
 class Server {
   constructor() {
@@ -42,8 +49,14 @@ class Server {
     const router = express.Router();
     router.use('/cars', carRouter);
     router.use('/offices', officeRouter);
+    router.use('/car-descriptions', carDescriptionRouter);
+    router.use('/car-prices', carPriceRouter);
+    router.use('/car-statuses', carStatusRouter);
+    router.use('/office-cars', officeCarRouter);
     router.use('/auth', authRouter);
     router.use('/reservations', reservationRouter);
+    router.use('/customers', customerRouter);
+    router.use('/search-reservations', searchReservationRouter);
 
     return router;
   }
