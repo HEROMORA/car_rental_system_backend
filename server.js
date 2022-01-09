@@ -5,6 +5,7 @@ const error = require('./middleware/error');
 const authRouter = require('./modules/auth/routes');
 const carRouter = require('./modules/car/routes');
 const officeRouter = require('./modules/office/routes');
+const reservationRouter = require('./modules/reservation/routes');
 const carDescriptionRouter = require('./modules/car_description/routes');
 const carPriceRouter = require('./modules/car_price/routes');
 const carStatusRouter = require('./modules/car_status/routes');
@@ -53,6 +54,7 @@ class Server {
     router.use('/car-statuses', carStatusRouter);
     router.use('/office-cars', officeCarRouter);
     router.use('/auth', authRouter);
+    router.use('/reservations', reservationRouter);
     router.use('/customers', customerRouter);
     router.use('/search-reservations', searchReservationRouter);
 
