@@ -12,7 +12,7 @@ class CarController {
   }
 
   async getCarWithDetails(req, res, next) {
-    const car = await getCarWithDetails(req.params.id);
+    const car = await getCarWithDetails(req.query);
     res.status(200).json(car);
   }
 
