@@ -30,4 +30,9 @@ reportsRouter.get(
   reportController.getCustomerReservationsReport
 );
 
+reportsRouter.get(
+  '/payments',
+  reportController.getDailyPaymentsWithinPeriodReport
+);
+
 module.exports = reportsRouter;

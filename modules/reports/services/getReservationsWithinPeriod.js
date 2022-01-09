@@ -9,6 +9,7 @@ const Car = require('../../../models/car');
 const { Op } = require('sequelize');
 
 const getReservationsWithinPeriod = async (query) => {
+  
   const defaultWhere = {
     return_date: {
       [Op.lte]: query.return_date,
