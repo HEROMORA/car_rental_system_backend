@@ -3,6 +3,7 @@ const {
   getCarReservationsWithinPeriod,
   getStatusOfAllCarsInDay,
   getCustomerReservations,
+  getDailyPaymentsWithinPeriod,
 } = require('./services');
 
 class ReportsController {
@@ -26,6 +27,11 @@ class ReportsController {
   async getCustomerReservationsReport(req, res, next) {
     const customer_id = req.params.customerId;
     const report = await getCustomerReservations(customer_id);
+    res.status(200).json(report);
+  }
+
+  async getDailyPaymentsWithinPeriodReport(req, res, next) {
+    const report = await getDailyPaymentsWithinPeriod(req.query);
     res.status(200).json(report);
   }
 }
