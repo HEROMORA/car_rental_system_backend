@@ -13,7 +13,7 @@ const officeCarRouter = require('./modules/office_car/routes');
 const AppError = require('./utils/appError');
 const customerRouter = require('./modules/customer/routes');
 const searchReservationRouter = require('./modules/reservation_search/routes');
-
+const reportsRouter = require('./modules/reports/routes');
 
 class Server {
   constructor() {
@@ -57,6 +57,7 @@ class Server {
     router.use('/reservations', reservationRouter);
     router.use('/customers', customerRouter);
     router.use('/search-reservations', searchReservationRouter);
+    router.use('/reports', reportsRouter);
 
     return router;
   }

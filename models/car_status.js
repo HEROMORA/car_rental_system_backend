@@ -26,4 +26,9 @@ CarStatus.belongsTo(Car, {
   targetKey: 'car_id',
 });
 
+Car.hasOne(CarStatus, {
+  foreignKey: 'car_id',
+  targetKey: 'car_id',
+});
+
 module.exports = CarStatus;

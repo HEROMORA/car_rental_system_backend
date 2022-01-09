@@ -34,4 +34,9 @@ Payment.belongsTo(Reservation, {
   targetKey: 'res_id',
 });
 
+Reservation.hasOne(Payment, {
+  foreignKey: 'res_id',
+  targetKey: 'res_id',
+});
+
 module.exports = Payment;
