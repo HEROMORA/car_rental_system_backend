@@ -6,6 +6,8 @@ const CarPrice = require('../../../models/car_price');
 const AppError = require('../../../utils/appError');
 
 const { Op } = require('sequelize');
+const Car = require('../../../models/car');
+const CarStatus = require('../../../models/car_status');
 
 const createReservation = async (resData) => {
   var today = new Date();
@@ -50,6 +52,11 @@ const createReservation = async (resData) => {
   //   },
 
   // });
+
+  const carStatus = await CarStatus.findByPk(resData.car_id);
+  if (carStatus.status !== 'active') {
+    throw new AppError('Car not avaiable', 400);
+  }
 
   const t = await sequelize.transaction();
 
