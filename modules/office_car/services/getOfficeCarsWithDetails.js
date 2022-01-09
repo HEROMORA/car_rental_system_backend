@@ -8,6 +8,7 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 const { pick } = require('lodash');
 const CarStatus = require('../../../models/car_status');
+const CarPrice = require('../../../models/car_price');
 
 const getOfficeCarsWithDetails = async (customerId, query) => {
   let address;
@@ -38,6 +39,10 @@ const getOfficeCarsWithDetails = async (customerId, query) => {
         {
           model: CarStatus,
           where: { status: 'active' },
+          required: true,
+        },
+        {
+          model: CarPrice,
           required: true,
         },
       ],

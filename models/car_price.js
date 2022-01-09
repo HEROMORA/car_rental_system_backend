@@ -21,9 +21,5 @@ const CarPrice = sequelize.define(
   }
 );
 
-CarPrice.belongsTo(Car, {
-  foreignKey: 'car_id',
-  targetKey: 'car_id',
-});
 
 module.exports = CarPrice;
