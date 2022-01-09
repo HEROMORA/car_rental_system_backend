@@ -1,4 +1,4 @@
-const { createCarDescription, getCarDescriptionById , updateCarDescription } = require('./services');
+const { createCarDescription, getCarDescriptionById , updateCarDescription, getCarDescriptions } = require('./services');
 
 class CarDescriptionController {
   async createCarDescription(req, res, next) {
@@ -9,6 +9,11 @@ class CarDescriptionController {
   async getCarDescriptionById(req, res, next) {
     const carDescription = await getCarDescriptionById(req.params.id);
     res.status(200).json(carDescription);
+  }
+
+  async getCarDescriptions(req, res, next) {
+    const carDescriptions = await getCarDescriptions();
+    res.status(200).json(carDescriptions);
   }
 
   async updateCarDescription(req, res, next) {
