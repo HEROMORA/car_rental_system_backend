@@ -47,10 +47,7 @@ const getCarWithDetails = async (query) => {
 
   const car = await Car.findAll( {
     include: inclusionArray,
-    where: !query.carQuery
-    ? {}
-    : 
-        carQuery
+    where: !Object.keys(carQuery).length ?{}: carQuery
   });
 
   if (!car) {
