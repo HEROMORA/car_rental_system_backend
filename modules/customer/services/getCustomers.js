@@ -1,6 +1,6 @@
 const Customer = require('../../../models/customer');
 const { pick } = require('lodash');
-const { Op } = require('sequelize');
+const Account = require('../../../models/account');
 
 const getCustomers = async (query) => {
   const customerQuery = pick(query, [
@@ -11,7 +11,16 @@ const getCustomers = async (query) => {
     'customer_id',
   ]);
 
-  const customers = await Customer.findAll({ where: customerQuery });
+  const accountQuery = pick(query, ['email', 'name']);
+
+  const customers = await Customer.findAll({
+    where: customerQuery,
+    include: {
+      model: Account,
+      required: true,
+      where: accountQuery,
+    },
+  });
   return customers;
 };
 

@@ -9,7 +9,7 @@ const officeController = new OfficeController();
 
 officeRouter
   .route('/')
-  .get(auth, role(['customer']), officeController.getAllOffices)
+  .get(auth, role(['customer', 'admin']), officeController.getAllOffices)
   .post(officeController.createOffice);
 
 officeRouter.route('/:id').get(officeController.getOfficeById);

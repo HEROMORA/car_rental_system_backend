@@ -4,15 +4,14 @@ const Pickup = require('../../../models/pickup');
 const sequelize = require('../../../instances/sequelize');
 const CarPrice = require('../../../models/car_price');
 const AppError = require('../../../utils/appError');
+const moment = require('moment');
 
 const { Op } = require('sequelize');
 const Car = require('../../../models/car');
 const CarStatus = require('../../../models/car_status');
 
 const createReservation = async (resData) => {
-  var today = new Date();
-  var nowDate =
-    today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+  const nowDate = moment().utc('+2').toISOString();
 
   if (new Date(resData.return_date) < new Date(resData.pickup_date)) {
     throw new AppError('Invalid Dates', 400);
